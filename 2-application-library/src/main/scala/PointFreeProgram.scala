@@ -2,19 +2,29 @@ import fplibrary._
 
 object PointFreeProgram {
   def createDescription(args: Array[String]): Description[Unit] = Description.create {
-    display(hyphens)
+    display(
+      hyphens
+    )
 
-    display(question)
+    display(
+      question
+    )
 
-    val input: String = prompt()
-    val integerAmount: Int = convertStringToInt(input)
-    val positiveAmount: Int = ensureAmountIsPositive(integerAmount)
-    val balance: Int = round(positiveAmount)
-    val message: String = createMesssage(balance)
+    display(
+      createMesssage(
+        round(
+          ensureAmountIsPositive(
+            convertStringToInt(
+              prompt()
+            )
+          )
+        )
+      )
+    )
 
-    display(message)
-
-    display(hyphens)
+    display(
+      hyphens
+    )
   }
 
   private val hyphens: String =

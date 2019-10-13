@@ -5,7 +5,7 @@ object Interpreter {
     print(Console.RED)
 
     val description: Description[Unit] =
-      Program.createDescription(args)
+      PointFreeProgram.createDescription(args)
 
     def interpret[A](description: Description[A]): A =
       description.apply()
