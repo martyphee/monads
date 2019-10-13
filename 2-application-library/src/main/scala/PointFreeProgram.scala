@@ -8,7 +8,7 @@ object PointFreeProgram {
           display(
             hyphens(
               display(
-                createMesssage(
+                createMessage(
                   round(
                     ensureAmountIsPositive(
                       convertStringToInt(
@@ -30,42 +30,38 @@ object PointFreeProgram {
       )
     )
 
-  private def hyphens(input: Any): String =
-    "\u2500" * 50
+  private lazy val hyphens: Any => String = _ =>
+    "-" * 50
 
-  private def question(input: Any): String =
+  private lazy val question: Any => String = _ =>
     "How much money would you like to deposit"
 
-  // side effect (writing to console)
-  private def display(input: String): Unit = {
+  private lazy val display: Any => Unit = input =>
     println(input)
-  }
 
   // side effecct (reading from the console
-  private def prompt(input: Any): String = "5"
-
-  //    scala.io.StdIn.readLine
+  private lazy val prompt: Any => String = _ => "5"
 
   // potential side effect (throwing of a NumberFormatException
-  private def convertStringToInt(input: String): Int =
+  private lazy val convertStringToInt: String => Int = input =>
     input.toInt
 
-  private def ensureAmountIsPositive(amount: Int): Int =
+  private lazy val ensureAmountIsPositive: Int => Int = amount =>
     if (amount < 1)
       1
     else
       amount
 
-  @scala.annotation.tailrec
-  private def round(amount: Int): Int =
+  private lazy val round: Int => Int = amount =>
     if (isDivisibleByHundred(amount))
       amount
     else
       round(amount + 1)
 
-  private def isDivisibleByHundred(amount: Int): Boolean =
+  private lazy val isDivisibleByHundred: Int => Boolean = amount =>
     amount % 100 == 0
 
-  private def createMesssage(balance: Int): String =
+  private lazy val createMessage: Int => String = balance =>
     s"Congratulations, you now have USD $balance"
+
 }
