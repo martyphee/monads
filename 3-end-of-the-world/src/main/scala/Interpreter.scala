@@ -4,11 +4,11 @@ object Interpreter {
   def main(args: Array[String]): Unit = {
     print(Console.RED)
 
-    val description: Description[Unit] =
+    val description: IO[Unit] =
       PointFreeProgram.createDescription(args)
 
-    def interpret[A](description: Description[A]): A =
-      description.apply()
+    def interpret[A](description: IO[A]): A =
+      description.unsafeRun()
 
     print(Console.GREEN)
     interpret(description)

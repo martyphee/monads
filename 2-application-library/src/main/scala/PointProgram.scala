@@ -1,7 +1,7 @@
 import fplibrary._
 
 object PointProgram {
-  def createDescription(args: Array[String]): Description[Unit] = Description.create {
+  def createIO(args: Array[String]): IO[Unit] = IO.create {
     display(hyphens)
 
     display(question)
