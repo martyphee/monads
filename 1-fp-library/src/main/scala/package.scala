@@ -4,4 +4,12 @@ package object fplibrary {
 
   private type RegularArrow[A, B      ] = A => B
   private type KleisliArrow[A, B, C[_]] = A => C[B]
+
+  // val ac = PointFree.compose(ab, bc)
+  // val ac = ab `;` bc
+  implicit final class InfixNotationForPointFree[A, B](private val ab: A => B) extends AnyVal {
+    def `;`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
+    def `.`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
+    def `-->`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
+  }
 }
