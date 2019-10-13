@@ -30,14 +30,15 @@ object PointFreeProgram {
   //      )
   //    )
 
+  import Description._
+
   lazy val createDescription: Array[String] => Description[Unit] =
     ignoreArgs          --> hyphens --> displayKleisli  >==>
     question            --> displayKleisli              >==>
     promptKleisli                                       >==>
     convertStringToInt  --> ensureAmountIsPositive -->
       round --> createMessage --> displayKleisli        >==>
-    hyphens             --> displayKleisli              >==>
-    Description.brokenCreate
+    hyphens             --> displayKleisli
 
   private lazy val ignoreArgs: Array[String] => Unit = _ =>
     ()

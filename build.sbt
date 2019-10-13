@@ -12,7 +12,8 @@ ThisBuild / scalacOptions ++= Seq(
   "-feature",
   "-deprecation",
   "-language:implicitConversions",
-  "-language:higherKinds"
+  "-language:higherKinds",
+  "-language:postfixOps"
 )
 
 ThisBuild / shellPrompt := (_ => fancyPrompt(name.value))
