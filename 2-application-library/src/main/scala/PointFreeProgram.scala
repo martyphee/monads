@@ -1,51 +1,51 @@
 import fplibrary._
 
 object PointFreeProgram {
-//  lazy val createDescription: Array[String] => Description[Unit] = args =>
-//    Description.brokenCreate(
-//      display(
-//        question(
-//          display(
-//            hyphens(
-//              display(
-//                createMessage(
-//                  round(
-//                    ensureAmountIsPositive(
-//                      convertStringToInt(
-//                        prompt(
-//                          display(
-//                            hyphens(
-//                              args
-//                            )
-//                          )
-//                        )
-//                      )
-//                    )
-//                  )
-//                )
-//              )
-//            )
-//          )
-//        )
-//      )
-//    )
+  //  lazy val createDescription: Array[String] => Description[Unit] = args =>
+  //    Description.brokenCreate(
+  //      display(
+  //        question(
+  //          display(
+  //            hyphens(
+  //              display(
+  //                createMessage(
+  //                  round(
+  //                    ensureAmountIsPositive(
+  //                      convertStringToInt(
+  //                        prompt(
+  //                          display(
+  //                            hyphens(
+  //                              args
+  //                            )
+  //                          )
+  //                        )
+  //                      )
+  //                    )
+  //                  )
+  //                )
+  //              )
+  //            )
+  //          )
+  //        )
+  //      )
+  //    )
 
   lazy val createDescription: Array[String] => Description[Unit] =
-    ignoreArgs `;`
-    hyphens `;`
-    display `;`
-    prompt `;`
-    question `;`
-    display `;`
-    prompt `;`
-    convertStringToInt `;`
-    ensureAmountIsPositive `;`
-    round `;`
-    createMessage `;`
-    display `;`
-    hyphens `;`
-    display `;`
-    Description.brokenCreate
+    ignoreArgs                -->
+      hyphens                 -->
+      display                 -->
+      prompt                  -->
+      question                -->
+      display                 -->
+      prompt                  -->
+      convertStringToInt      -->
+      ensureAmountIsPositive  -->
+      round                   -->
+      createMessage           -->
+      display                 -->
+      hyphens                 -->
+      display                 -->
+      Description.brokenCreate
 
   private lazy val ignoreArgs: Array[String] => Unit = _ =>
     ()
