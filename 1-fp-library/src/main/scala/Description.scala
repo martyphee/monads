@@ -6,11 +6,11 @@ object Description {
 
   implicit val M: Monad[Description] = new Monad[Description] {
     final override def flatMap[A, B](ca: Description[A])(acb: A => Description[B]): Description[B] = {
-      val b = ca.apply()
+      val a = ca.apply()
 
-      val dc = acb(b)
+      val cb = acb(a)
 
-      dc
+      cb
     }
   }
 }
