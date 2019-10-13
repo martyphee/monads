@@ -20,7 +20,7 @@ object PointFree {
     dc
   }
 
-  def composeKleisli2[A, B, C, D[_]](adb: A => D[B], bdc: B => D[C]): A => D[C] = a => {
+  def composeKleisli2[A, B, C, D[_]: Monad](adb: A => D[B], bdc: B => D[C]): A => D[C] = a => {
     // we need to product a Description[C]
     val db = adb(a)
 //    val b = db.apply()
@@ -29,13 +29,17 @@ object PointFree {
 //
 //    dc
 
-    val dc = helper(db, bdc)
+    val dc = Monad[D].flatMap(db)(bdc)
     dc
   }
 
-  def helper[A, B, C[_]](ca: C[A], acd: A => C[B]): C[B] = ???
-
   trait Monad[C[_]] {
-    def flatMap[A, B](ca: C[A])(acd: A => C[B]): C[B]
+    def flatMap[A, B](ca: C[A])(acb: A => C[B]): C[B]
+    def bind[A, B](ca: C[A])(acb: A => C[B]): C[B] = flatMap(ca)(acb)
+    def >==[A, B](ca: C[A])(acb: A => C[B]): C[B] = flatMap(ca)(acb)
+  }
+
+  object Monad {
+    def apply[C[_]: Monad]: Monad[C] = implicitly[Monad[C]]
   }
 }
