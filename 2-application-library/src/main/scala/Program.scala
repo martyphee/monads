@@ -1,7 +1,7 @@
 import fplibrary._
 
 object Program {
-  def createDescription(args: Array[String]): Description[Unit] = () => {
+  def createDescription(args: Array[String]): Description[Unit] = Description.create {
     display(hyphens)
 
     display(question)
