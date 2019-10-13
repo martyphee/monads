@@ -1,34 +1,54 @@
 import fplibrary._
 
 object PointFreeProgram {
-  def createDescription(args: Array[String]): Description[Unit] =
-    Description.create(
-      display(
-        question(
-          display(
-            hyphens(
-              display(
-                createMessage(
-                  round(
-                    ensureAmountIsPositive(
-                      convertStringToInt(
-                        prompt(
-                          display(
-                            hyphens(
-                              args
-                            )
-                          )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
+//  lazy val createDescription: Array[String] => Description[Unit] = args =>
+//    Description.brokenCreate(
+//      display(
+//        question(
+//          display(
+//            hyphens(
+//              display(
+//                createMessage(
+//                  round(
+//                    ensureAmountIsPositive(
+//                      convertStringToInt(
+//                        prompt(
+//                          display(
+//                            hyphens(
+//                              args
+//                            )
+//                          )
+//                        )
+//                      )
+//                    )
+//                  )
+//                )
+//              )
+//            )
+//          )
+//        )
+//      )
+//    )
+
+  lazy val createDescription: Array[String] => Description[Unit] =
+    ignoreArgs `;`
+    hyphens `;`
+    display `;`
+    prompt `;`
+    question `;`
+    display `;`
+    prompt `;`
+    convertStringToInt `;`
+    ensureAmountIsPositive `;`
+    round `;`
+    createMessage `;`
+    display `;`
+    hyphens `;`
+    display `;`
+    Description.brokenCreate
+
+  private lazy val ignoreArgs: Array[String] => Unit = _ =>
+    ()
 
   private lazy val hyphens: Any => String = _ =>
     "-" * 50
