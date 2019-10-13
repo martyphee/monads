@@ -3,11 +3,11 @@ import fplibrary._
 object PointFreeProgram {
   def createDescription(args: Array[String]): Description[Unit] = Description.create {
     display(
-      hyphens
+      hyphens(())
     )
 
     display(
-      question
+      question(())
     )
 
     display(
@@ -15,7 +15,7 @@ object PointFreeProgram {
         round(
           ensureAmountIsPositive(
             convertStringToInt(
-              prompt()
+              prompt(())
             )
           )
         )
@@ -23,14 +23,14 @@ object PointFreeProgram {
     )
 
     display(
-      hyphens
+      hyphens(())
     )
   }
 
-  private val hyphens: String =
+  private def hyphens(input: Any): String =
     "\u2500" * 50
 
-  private val question: String =
+  private def question(input: Any): String =
     "How much money would you like to deposit"
 
   // side effect (writing to console)
@@ -39,7 +39,7 @@ object PointFreeProgram {
   }
 
   // side effecct (reading from the console
-  private def prompt(): String = "5"
+  private def prompt(input: Any): String = "5"
   //    scala.io.StdIn.readLine
 
   // potential side effect (throwing of a NumberFormatException
