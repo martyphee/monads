@@ -33,18 +33,18 @@ object PointFreeProgram {
   lazy val createDescription: Array[String] => Description[Unit] =
     ignoreArgs                -->
       hyphens                 -->
-      displayKleisli                 -->
-      prompt                  -->
+      displayKleisli          >==>
+      promptKleisli           >==>
       question                -->
-      displayKleisli                 -->
-      prompt                  -->
+      displayKleisli          >==>
+      promptKleisli           >==>
       convertStringToInt      -->
       ensureAmountIsPositive  -->
       round                   -->
       createMessage           -->
-      displayKleisli                 -->
+      displayKleisli          >==>
       hyphens                 -->
-      displayKleisli                 --> // A => Description[Unit]
+      displayKleisli          >==>
       Description.brokenCreate
 
   private lazy val ignoreArgs: Array[String] => Unit = _ =>
@@ -65,6 +65,8 @@ object PointFreeProgram {
 
   // side effecct (reading from the console
   private lazy val prompt: Any => String = _ => "5"
+
+  private lazy val promptKleisli: Any => Description[String] = _ => Description.create("5")
 
   // potential side effect (throwing of a NumberFormatException
   private lazy val convertStringToInt: String => Int = input =>

@@ -9,4 +9,14 @@ object PointFree {
     val c = bc(b)
     c
   }
+
+  def composeKleisli[A, B, C](adb: A => Description[B], bdc: B => Description[C]): A => Description[C] = a => {
+    // we need to product a Description[C]
+    val db = adb(a)
+    val b = db.apply()
+
+    val dc = bdc(b)
+
+    dc
+  }
 }
