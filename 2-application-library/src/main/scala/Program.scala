@@ -1,5 +1,8 @@
 object Program {
-  def run(args: Array[String]): Unit = {
+  private type Thunk[A] = () => A
+  type Description[A] = Thunk[A]
+
+  def createDescription(args: Array[String]): Description[Unit] = () => {
     display(hyphens)
 
     display(question)
