@@ -34,4 +34,8 @@ object PointFree {
   }
 
   def helper[A, B, C[_]](ca: C[A], acd: A => C[B]): C[B] = ???
+
+  trait Monad[C[_]] {
+    def flatMap[A, B](ca: C[A])(acd: A => C[B]): C[B]
+  }
 }
