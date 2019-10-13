@@ -27,8 +27,8 @@ object Program {
   }
 
   // side effecct (reading from the console
-  private def prompt(): String =
-    scala.io.StdIn.readLine
+  private def prompt(): String = "5"
+//    scala.io.StdIn.readLine
 
   // potential side effect (throwing of a NumberFormatException
   private def convertStringToInt(input: String): Int =
