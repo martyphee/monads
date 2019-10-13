@@ -1,7 +1,6 @@
-object Program {
-  private type Thunk[A] = () => A
-  type Description[A] = Thunk[A]
+import fplibrary._
 
+object Program {
   def createDescription(args: Array[String]): Description[Unit] = () => {
     display(hyphens)
 
