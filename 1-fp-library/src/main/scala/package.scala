@@ -8,8 +8,8 @@ package object fplibrary {
   // val ac = PointFree.compose(ab, bc)
   // val ac = ab `;` bc
   implicit final class InfixNotationForPointFree[A, B](private val ab: A => B) extends AnyVal {
-    def `;`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
-    def `.`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
-    def `-->`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
+    @inline def `;`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
+    @inline def `.`[C](bc: B => C): A => C = PointFree.compose(ab, bc)
+    @inline def `-->`[C](bc: B => C): A => C = PointFree.compose(ab, bc) // - - >
   }
 }
