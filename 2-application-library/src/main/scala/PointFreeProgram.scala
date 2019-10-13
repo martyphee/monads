@@ -1,31 +1,34 @@
 import fplibrary._
 
 object PointFreeProgram {
-  def createDescription(args: Array[String]): Description[Unit] = Description.create {
-    display(
-      hyphens(())
-    )
-
-    display(
-      question(())
-    )
-
-    display(
-      createMesssage(
-        round(
-          ensureAmountIsPositive(
-            convertStringToInt(
-              prompt(())
+  def createDescription(args: Array[String]): Description[Unit] =
+    Description.create(
+      display(
+        question(
+          display(
+            hyphens(
+              display(
+                createMesssage(
+                  round(
+                    ensureAmountIsPositive(
+                      convertStringToInt(
+                        prompt(
+                          display(
+                            hyphens(
+                              args
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
             )
           )
         )
       )
     )
-
-    display(
-      hyphens(())
-    )
-  }
 
   private def hyphens(input: Any): String =
     "\u2500" * 50
@@ -40,6 +43,7 @@ object PointFreeProgram {
 
   // side effecct (reading from the console
   private def prompt(input: Any): String = "5"
+
   //    scala.io.StdIn.readLine
 
   // potential side effect (throwing of a NumberFormatException
@@ -47,14 +51,14 @@ object PointFreeProgram {
     input.toInt
 
   private def ensureAmountIsPositive(amount: Int): Int =
-    if(amount < 1)
+    if (amount < 1)
       1
     else
       amount
 
   @scala.annotation.tailrec
   private def round(amount: Int): Int =
-    if(isDivisibleByHundred(amount))
+    if (isDivisibleByHundred(amount))
       amount
     else
       round(amount + 1)
